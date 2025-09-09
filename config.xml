@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/GreaterLoveTV" version="1.0.0" viewmodes="maximized">
-    <tizen:application id="i2GNpZ28BV.GreaterLoveTV" package="i2GNpZ28BV" required_version="2.3"/>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets"
+        id="http://yourdomain/GreaterLoveTV" version="3.0.0" viewmodes="maximized">
+    
+    <!-- App Identity -->
+    <tizen:application id="i2GNpZ28BV.GreaterLoveTV" package="i2GNpZ28BV" required_version="6.0"/>
+    
+    <!-- App Metadata -->
+    <name>Greater Love TV</name>
+    <description xml:lang="en">Greater Love Network - Inspirational Biblical content and live streaming</description>
+    <author href="https://greaterlove.tv" email="contact@greaterlove.tv">Greater Love Network</author>
+    
+    <!-- Main Content -->
     <content src="index.html"/>
-    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
-    <icon src="tizen_logo.png"/>
-    <tizen:metadata key="http://tizen.org/metadata/app_ui_type/base_screen_resolution" value="extensive"/>
-    <name>GreaterLoveTV</name>
+    
+    <!-- Access Control for external domains -->
+    <access origin="*" subdomains="true"/>
+    
+    <!-- Content Security Policy for media streaming -->
+    <tizen:content-security-policy>
+        default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:;
+        media-src 'self' https: data: blob: https://rpn.bozztv.com https://swf.tulix.tv https://*.castr.com;
+        connect-src 'self' https: wss: ws:;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https:;
+        font-src 'self' data:;
+    </tizen:content-security-policy>
+    
+    <!-- Icons and Visual Assets -->
+    <icon src="images/icon.png"/>
+    
+    <!-- TV Specific Settings -->
     <tizen:profile name="tv-samsung"/>
-    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+    
+    <!-- Screen and Orientation Settings -->
+    <tizen:setting screen-orientation="landscape"
+                   context-menu="enable"
+                   background-support="disable"
+                   encryption="disable"
+                   install-location="auto"
+                   hwkey-event="enable"/>
+    
+    <!-- Feature Requirements -->
+    <feature name="http://tizen.org/feature/screen.size.normal.1920.1080" required="true"/>
+    <feature name="http://tizen.org/feature/network.internet" required="true"/>
+    <feature name="http://tizen.org/feature/tv" required="true"/>
+    
+    <!-- Basic Privileges -->
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    
 </widget>

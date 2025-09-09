@@ -1,0 +1,38 @@
+/* TV Resolution Responsive Styles */
+@media screen and (max-width: 1280px) {
+    :root {
+        --font-size-hero: 72px;
+        --font-size-huge: 48px;
+        --font-size-large: 36px;
+        --font-size-medium: 24px;
+        --font-size-normal: 18px;
+        --font-size-small: 14px;
+        --spacing-xl: 40px;
+        --spacing-xxl: 60px;
+        --spacing-hero: 80px;
+    }
+    
+    .shows-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .live-streams-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .hero-title { font-size: 56px; }
+    .hero-subtitle { font-size: 28px; }
+    .shows-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-md);
+    }
+}
+
+/* Standard TV (720p) */
+@media screen and (max-height: 720px) {
+    .hero-section { padding: 60px var(--spacing-xl); }
+    .section { margin-bottom: 60px; }
+}
