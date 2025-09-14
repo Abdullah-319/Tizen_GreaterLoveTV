@@ -1,0 +1,398 @@
+/* Greater Love TV - Focus Management Styles */
+
+/* Focus System Variables */
+:root {
+    --focus-color: #ffffff;
+    --focus-shadow: rgba(255, 255, 255, 0.4);
+    --focus-border: rgba(255, 255, 255, 0.6);
+    --focus-scale: 1.08;
+    --focus-duration: 0.25s;
+    --focus-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Focusable Element */
+.focusable {
+    outline: none;
+    border: none;
+    transition: all var(--focus-duration) var(--focus-easing);
+    cursor: pointer;
+    position: relative;
+    transform-origin: center;
+}
+
+/* Global Focus States */
+.focusable:focus,
+.focusable.focused {
+    transform: scale(var(--focus-scale));
+    box-shadow: 0 0 0 4px var(--focus-border), 
+                0 8px 25px var(--focus-shadow);
+    z-index: 10;
+}
+
+/* Navigation Focus */
+.nav-button {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-button:focus,
+.nav-button.focused {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.nav-button.active {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--text-primary);
+    border-radius: 50%;
+}
+
+/* Card Focus States */
+.card {
+    transition: all var(--focus-duration) var(--focus-easing);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card:focus,
+.card.focused {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px var(--focus-border), 
+                0 12px 30px rgba(0, 0, 0, 0.5);
+    z-index: 15;
+}
+
+/* Video Card Focus */
+.video-card {
+    position: relative;
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.video-card:focus,
+.video-card.focused {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.6), 
+                0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Continue Watching Card Focus */
+.continue-watching-card:focus,
+.continue-watching-card.focused {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.6), 
+                0 8px 25px rgba(251, 146, 60, 0.3);
+}
+
+/* Live Stream Card Focus */
+.live-stream-card {
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.live-stream-card:focus,
+.live-stream-card.focused {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.6), 
+                0 12px 30px rgba(239, 68, 68, 0.4);
+}
+
+/* Show Card Focus */
+.show-card {
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.show-card:focus,
+.show-card.focused {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.6), 
+                0 8px 25px rgba(168, 85, 247, 0.3);
+}
+
+/* Category Card Focus */
+.category-card:focus,
+.category-card.focused {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px var(--focus-border), 
+                0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Button Focus States */
+.btn:focus,
+.btn.focused {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.4);
+}
+
+.btn-secondary:focus,
+.btn-secondary.focused {
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Video Player Controls Focus */
+.control-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.control-button:focus,
+.control-button.focused {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 0 3px var(--focus-border), 
+                0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.control-button.main-control {
+    width: 60px;
+    height: 60px;
+}
+
+.control-button.main-control:focus,
+.control-button.main-control.focused {
+    transform: scale(1.15);
+}
+
+/* Progress Bar Focus */
+.progress-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.progress-thumb:focus,
+.progress-thumb.focused {
+    transform: translateY(-50%) scale(1.5);
+    box-shadow: 0 0 0 3px var(--focus-border), 
+                0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Back Button Focus */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.back-button:focus,
+.back-button.focused {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 3px var(--focus-border), 
+                0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Grid Focus States */
+.grid-item {
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.grid-item:focus,
+.grid-item.focused {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Loading Card Focus */
+.loading-card {
+    transition: all var(--focus-duration) var(--focus-easing);
+    opacity: 0.8;
+}
+
+.loading-card:focus,
+.loading-card.focused {
+    transform: scale(1.02);
+    opacity: 1.0;
+}
+
+/* QR Code Focus (Non-interactive) */
+.qr-code-card {
+    transition: all var(--focus-duration) var(--focus-easing);
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* Resume Prompt Focus */
+.resume-button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+.resume-button:focus,
+.resume-button.focused {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.resume-button.start-over {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.resume-button.continue-watching {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.resume-button.continue-watching:focus,
+.resume-button.continue-watching.focused {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.4), 
+                0 4px 15px rgba(229, 62, 62, 0.3);
+}
+
+/* Sort Options Focus */
+.sort-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--focus-duration) var(--focus-easing);
+    width: 100%;
+}
+
+.sort-option:focus,
+.sort-option.focused {
+    background: rgba(59, 130, 246, 0.1);
+    transform: scale(1.02);
+}
+
+.sort-option.active {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+/* Focus Ring for Accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    .focusable:focus-visible {
+        animation: focusRing 0.3s ease;
+    }
+}
+
+@keyframes focusRing {
+    0% {
+        box-shadow: 0 0 0 0px var(--focus-border);
+    }
+    50% {
+        box-shadow: 0 0 0 8px var(--focus-border);
+    }
+    100% {
+        box-shadow: 0 0 0 4px var(--focus-border);
+    }
+}
+
+/* Focus Transitions for Smooth Navigation */
+.focus-transition {
+    transition: all var(--focus-duration) var(--focus-easing);
+}
+
+/* Disabled Focus States */
+.focusable:disabled,
+.focusable.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .focusable:focus,
+    .focusable.focused {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .focusable,
+    .card,
+    .control-button,
+    .nav-button {
+        transition: none;
+        animation: none;
+    }
+    
+    .focusable:focus,
+    .focusable.focused {
+        transform: none;
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+    }
+}
+
+/* TV Focus Manager - tvOS Style Focus */
+.tv-focused {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8) !important;
+    border: 3px solid rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.2s ease !important;
+    z-index: 100 !important;
+    position: relative !important;
+}
+
+/* Focus Debugging (Remove in production) */
+.debug-focus .focusable:focus::after {
+    content: attr(data-focus-id);
+    position: absolute;
+    top: -25px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 3px;
+    z-index: 1000;
+}

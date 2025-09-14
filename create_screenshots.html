@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greater Love TV - Screenshot Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: url('images/background.png') center/cover no-repeat,
+                        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+        }
+
+        .screenshot-container {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Home Screen Screenshot */
+        .home-screen {
+            padding: 60px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-title {
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4);
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .content-grid {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+        }
+
+        .live-stream-card, .video-card {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .live-stream-card:hover, .video-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.3);
+        }
+
+        .live-thumbnail, .video-thumbnail {
+            width: 100%;
+            height: 169px;
+            background: linear-gradient(45deg, #007AFF, #0051D5);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .live-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .live-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF3B30;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #007AFF;
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 80px;
+            height: 80px;
+            background: url('images/logo.png') center/contain no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="screenshot-container" id="screenshot1">
+        <div class="logo"></div>
+        <div class="home-screen">
+            <div class="hero-section">
+                <h1 class="hero-title">MEET OUR INSPIRING MINISTERS</h1>
+                <button class="cta-button">DISCOVER CONTENT</button>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Live Streams</h2>
+                <div class="content-grid">
+                    <div class="live-stream-card">
+                        <div class="live-thumbnail">
+                            <div class="live-overlay">GREATER LOVE TV</div>
+                            <div class="live-status">● LIVE</div>
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Greater Love TV 1</h3>
+                            <p class="card-subtitle">Live Broadcast</p>
+                        </div>
+                    </div>
+                    <div class="live-stream-card">
+                        <div class="live-thumbnail">
+                            <div class="live-overlay">GREATER LOVE TV</div>
+                            <div class="live-status">● LIVE</div>
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Greater Love TV 2</h3>
+                            <p class="card-subtitle">Live Broadcast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Shows</h2>
+                <div class="content-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Sunday Morning Worship</h3>
+                            <p class="card-subtitle">52 episodes</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Bible Study Sessions</h3>
+                            <p class="card-subtitle">104 episodes</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Youth Ministry</h3>
+                            <p class="card-subtitle">36 episodes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

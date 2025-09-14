@@ -1,0 +1,550 @@
+// index.html - Main Application File
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greater Love TV</title>
+    
+    <!-- Tizen TV API - Only load if available -->
+    <script>
+        // Check if Tizen WebAPI is available, if not, create a mock
+        if (typeof tizen === 'undefined') {
+            console.log('Tizen WebAPI not available, creating mock');
+            window.tizen = {
+                application: {
+                    getCurrentApplication: function() {
+                        return {
+                            addEventListener: function() {},
+                            exit: function() {
+                                console.log('Mock app exit called');
+                            }
+                        };
+                    }
+                },
+                tvinputdevice: {
+                    registerKey: function() {}
+                }
+            };
+            window.webapis = {
+                avplay: null
+            };
+        }
+    </script>
+    
+    <!-- External Libraries -->
+    <script src="js/lib/hls.min.js"></script>
+    
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/views.css">
+    <link rel="stylesheet" href="css/focus.css">
+    
+    <!-- Professional Data Models -->
+    <script src="js/models/Models.js" defer></script>
+
+    <!-- Application JavaScript -->
+    <script src="js/core/app.js" defer></script>
+    <script src="js/core/navigation.js" defer></script>
+    <script src="js/core/simple-focus-manager.js" defer></script>
+    <script src="js/core/tv-focus-manager.js" defer></script>
+    <script src="js/services/api-service.js" defer></script>
+    <script src="js/managers/progress-manager.js" defer></script>
+    <script src="js/components/navigation-bar.js" defer></script>
+    <script src="js/components/CardComponents.js" defer></script>
+    <script src="js/views/home-view.js" defer></script>
+    <script src="js/views/shows-view.js" defer></script>
+    <script src="js/views/categories-view.js" defer></script>
+    <script src="js/views/about-view.js" defer></script>
+    <script src="js/views/qr-codes-view.js" defer></script>
+    <script src="js/views/show-detail-view.js" defer></script>
+    <script src="js/views/video-player-view.js" defer></script>
+</head>
+<body class="dark-theme">
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Background -->
+        <div class="background-gradient"></div>
+        
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h2 class="loading-text">Loading Greater Love TV...</h2>
+                <p class="loading-subtitle">Preparing your spiritual content</p>
+            </div>
+        </div>
+        
+        <!-- Error Overlay -->
+        <div id="errorOverlay" class="error-overlay hidden">
+            <div class="error-content">
+                <div class="error-icon">⚠️</div>
+                <h2 class="error-title">Connection Error</h2>
+                <p class="error-message">Unable to connect to Greater Love TV services.</p>
+                <button class="retry-button" tabindex="1">Retry</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <nav id="navigationBar" class="navigation-bar">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <img src="images/logo.png" alt="Greater Love TV" class="logo">
+                </div>
+
+                <div class="nav-items">
+                    <button class="nav-button active" data-view="home" tabindex="1">
+                        <span>HOME</span>
+                        <div class="nav-dot"></div>
+                    </button>
+                    <button class="nav-button" data-view="shows" tabindex="2">
+                        <span>SHOWS</span>
+                        <div class="nav-dot"></div>
+                    </button>
+                    <button class="nav-button" data-view="about" tabindex="3">
+                        <span>ABOUT</span>
+                        <div class="nav-dot"></div>
+                    </button>
+                    <button class="nav-button" data-view="info" tabindex="4">
+                        <span>INFO</span>
+                        <div class="nav-dot"></div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main id="mainContent" class="main-content">
+            <!-- Home View -->
+            <section id="homeView" class="view home-view active">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h1 class="hero-title">MEET OUR INSPIRING MINISTERS</h1>
+                        <button class="smart-cta-button" tabindex="30">
+                            <span>DISCOVER CONTENT</span>
+                        </button>
+                        
+                        <!-- Continue Watching Section -->
+                        <div id="continueWatchingSection" class="section hidden">
+                            <h2 class="section-title">Continue Watching</h2>
+                            <div id="continueWatchingGrid" class="content-grid"></div>
+                        </div>
+                        
+                        <!-- Live Streams Section -->
+                        <div id="liveStreamsSection" class="section">
+                            <h2 class="section-title">Live Streams</h2>
+                            <div id="liveStreamsGrid" class="content-grid live-grid">
+                                <!-- Fallback content -->
+                                <div class="video-card live-stream-card" tabindex="40">
+                                    <div class="live-thumbnail">
+                                        <img src="images/GL_live_1.png" alt="Greater Love TV 1" loading="lazy">
+                                        <div class="live-overlay">
+                                            <div class="live-network-name">GREATER LOVE TV</div>
+                                            <div class="live-channel-number">1</div>
+                                        </div>
+                                        <div class="live-status">
+                                            <div class="status-indicator online"></div>
+                                            <span class="status-text">ONLINE</span>
+                                        </div>
+                                        <div class="live-play-button">
+                                            <span>▶</span>
+                                        </div>
+                                    </div>
+                                    <div class="live-info">
+                                        <h3 class="live-title">Greater Love TV 1</h3>
+                                        <p class="live-subtitle">Live Broadcast</p>
+                                    </div>
+                                </div>
+                                <div class="video-card live-stream-card" tabindex="41">
+                                    <div class="live-thumbnail">
+                                        <img src="images/GL_live_2.png" alt="Greater Love TV 2" loading="lazy">
+                                        <div class="live-overlay">
+                                            <div class="live-network-name">GREATER LOVE TV</div>
+                                            <div class="live-channel-number">2</div>
+                                        </div>
+                                        <div class="live-status">
+                                            <div class="status-indicator online"></div>
+                                            <span class="status-text">ONLINE</span>
+                                        </div>
+                                        <div class="live-play-button">
+                                            <span>▶</span>
+                                        </div>
+                                    </div>
+                                    <div class="live-info">
+                                        <h3 class="live-title">Greater Love TV 2</h3>
+                                        <p class="live-subtitle">Live Broadcast</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Categories Section -->
+                        <div id="categoriesSection" class="section">
+                            <h2 class="section-title">Categories</h2>
+                            <div id="categoriesGrid" class="content-grid categories-grid">
+                                <!-- Fallback content -->
+                                <div class="category-card" tabindex="50">
+                                    <div class="category-icon" style="background-color: #007AFF">
+                                        <span class="icon">📺</span>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3 class="category-title">All Categories</h3>
+                                        <p class="category-count">45 shows</p>
+                                    </div>
+                                </div>
+                                <div class="category-card" tabindex="51">
+                                    <div class="category-icon" style="background-color: #34C759">
+                                        <span class="icon">⭐</span>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3 class="category-title">Original Content</h3>
+                                        <p class="category-count">12 shows</p>
+                                    </div>
+                                </div>
+                                <div class="category-card" tabindex="52">
+                                    <div class="category-icon" style="background-color: #FF3B30">
+                                        <span class="icon">📺</span>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3 class="category-title">Live Broadcasts</h3>
+                                        <p class="category-count">8 shows</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Shows Section -->
+                        <div id="showsSection" class="section">
+                            <h2 class="section-title">Shows</h2>
+                            <div id="showsGrid" class="content-grid shows-grid">
+                                <!-- Fallback content -->
+                                <div class="video-card show-card" tabindex="100">
+                                    <div class="video-thumbnail">
+                                        <img src="images/logo.png" alt="Oasis Ministries" loading="lazy">
+                                        <div class="video-overlay">
+                                            <div class="play-button">
+                                                <span>▶</span>
+                                            </div>
+                                            <div class="episode-count">125 episodes</div>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h3 class="video-title">Oasis Ministries</h3>
+                                        <p class="video-subtitle">Teaching</p>
+                                        <p class="video-description">Biblical teaching from Anthony & Sheila Wynn</p>
+                                    </div>
+                                </div>
+                                <div class="video-card show-card" tabindex="101">
+                                    <div class="video-thumbnail">
+                                        <img src="images/logo.png" alt="Light Up The World" loading="lazy">
+                                        <div class="video-overlay">
+                                            <div class="play-button">
+                                                <span>▶</span>
+                                            </div>
+                                            <div class="episode-count">89 episodes</div>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h3 class="video-title">Light Up The World</h3>
+                                        <p class="video-subtitle">Teaching</p>
+                                        <p class="video-description">Inspirational messages from Jessica & Micah Wynn</p>
+                                    </div>
+                                </div>
+                                <div class="video-card show-card" tabindex="102">
+                                    <div class="video-thumbnail">
+                                        <img src="images/logo.png" alt="Created To Praise" loading="lazy">
+                                        <div class="video-overlay">
+                                            <div class="play-button">
+                                                <span>▶</span>
+                                            </div>
+                                            <div class="episode-count">67 episodes</div>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h3 class="video-title">Created To Praise</h3>
+                                        <p class="video-subtitle">Worship</p>
+                                        <p class="video-description">Worship and praise with Tim Hill</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Shows View -->
+            <section id="showsView" class="view shows-view">
+                <div class="view-header">
+                    <h1 class="view-title">All Shows</h1>
+                    <p class="view-subtitle">Browse all available spiritual content</p>
+                </div>
+                <div id="allShowsGrid" class="content-grid shows-grid"></div>
+            </section>
+            
+            <!-- About View -->
+            <section id="aboutView" class="view about-view">
+                <div class="about-hero">
+                    <img src="images/about_us_top.png" alt="About Greater Love TV" class="about-hero-image">
+                </div>
+
+                <div class="about-content">
+                    <div class="about-header">
+                        <img src="images/logo.png" alt="Greater Love TV" class="about-logo">
+                        <h1 class="about-title">Greater Love TV</h1>
+                        <p class="about-version">Version 2.0.1</p>
+                    </div>
+
+                    <div class="about-description">
+                        <h2>About Our Ministry</h2>
+                        <p>Greater Love TV is dedicated to bringing you the finest spiritual content from renowned Bible teachers and ministries. Our platform provides access to life-changing sermons, teachings, and live streams to help strengthen your faith journey.</p>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Live streaming from multiple ministries</li>
+                            <li>On-demand access to sermons and teachings</li>
+                            <li>Organized content by categories</li>
+                            <li>Continue watching functionality</li>
+                            <li>High-quality video streaming</li>
+                        </ul>
+
+                        <h3>Contact Information</h3>
+                        <p>For support or inquiries, please visit our website or contact us through the info section.</p>
+                    </div>
+                </div>
+
+                <div class="about-bottom">
+                    <img src="images/about_us_bottom.jpg" alt="About Bottom" class="about-bottom-image">
+                </div>
+            </section>
+
+            <!-- Info View (formerly QR Codes) -->
+            <section id="infoView" class="view qr-codes-view">
+                <div class="qr-content">
+                    <div class="view-header">
+                        <h1 class="view-title">QR Codes</h1>
+                        <p class="view-subtitle">Quick access to mobile apps and services</p>
+                    </div>
+                    
+                    <div class="qr-grid">
+                        <div class="qr-card" tabindex="10">
+                            <div class="qr-code">
+                                <img src="images/qr/download_mobile_app_qrcode.png" alt="Mobile App QR Code" class="qr-image">
+                            </div>
+                            <h3 class="qr-title">Mobile App</h3>
+                            <p class="qr-description">Download our mobile app</p>
+                        </div>
+
+                        <div class="qr-card" tabindex="11">
+                            <div class="qr-code">
+                                <img src="images/qr/donate_qrcode.png" alt="Donate QR Code" class="qr-image">
+                            </div>
+                            <h3 class="qr-title">Donate</h3>
+                            <p class="qr-description">Support our ministry</p>
+                        </div>
+
+                        <div class="qr-card" tabindex="12">
+                            <div class="qr-code">
+                                <img src="images/qr/prayer_request_qrcode.png" alt="Prayer Request QR Code" class="qr-image">
+                            </div>
+                            <h3 class="qr-title">Prayer Request</h3>
+                            <p class="qr-description">Submit prayer requests</p>
+                        </div>
+
+                        <div class="qr-card" tabindex="13">
+                            <div class="qr-code">
+                                <img src="images/qr/tell_your_story_qrcode.png" alt="Tell Your Story QR Code" class="qr-image">
+                            </div>
+                            <h3 class="qr-title">Tell Your Story</h3>
+                            <p class="qr-description">Share your testimony</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Show Detail View -->
+            <section id="showDetailView" class="view show-detail-view">
+                <div class="show-detail-content">
+                    <div class="show-detail-hero">
+                        <div class="show-detail-backdrop"></div>
+                        <div class="show-detail-info">
+                            <div class="show-detail-poster">
+                                <img id="showDetailPoster" src="" alt="" class="show-poster-image">
+                            </div>
+                            <div class="show-detail-meta">
+                                <h1 id="showDetailTitle" class="show-detail-title">Show Title</h1>
+                                <div class="show-detail-metadata">
+                                    <span id="showDetailCategory" class="show-category">Category</span>
+                                    <span class="metadata-separator">•</span>
+                                    <span id="showDetailEpisodeCount" class="show-episode-count">0 episodes</span>
+                                </div>
+                                <p id="showDetailDescription" class="show-detail-description">Show description</p>
+                                <div class="show-detail-actions">
+                                    <button id="playFirstEpisodeBtn" class="primary-button" tabindex="300">
+                                        <span class="button-icon">▶</span>
+                                        <span>Play First Episode</span>
+                                    </button>
+                                    <button id="backToHomeBtn" class="secondary-button" tabindex="301">
+                                        <span class="button-icon">←</span>
+                                        <span>Back</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="episodes-section">
+                        <h2 class="episodes-title">Episodes</h2>
+                        <div id="episodesGrid" class="episodes-grid"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Player View -->
+            <section id="videoPlayerView" class="view video-player-view">
+                <div class="video-player-container">
+                    <video id="videoPlayer" class="video-element" controls>
+                        <source src="" type="application/x-mpegURL">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <div class="video-controls">
+                        <div class="video-info">
+                            <h2 id="videoTitle" class="video-title">Loading...</h2>
+                            <p id="videoDescription" class="video-description">Please wait...</p>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <button id="playPauseBtn" class="control-btn" tabindex="20">
+                                <span class="control-icon">⏸️</span>
+                            </button>
+                            <button id="backBtn" class="control-btn" tabindex="21">
+                                <span class="control-icon">↩️</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <!-- Initialize App -->
+    <script>
+        // Wait for all deferred scripts to load before initializing
+        function waitForScriptsAndInit() {
+            console.log('🔄 Waiting for all scripts to load...');
+
+            // Check if all required classes are available
+            const requiredClasses = [
+                'GreaterLoveApp',
+                'SimpleFocusManager',
+                'CastrAPIService',
+                'CardComponents',
+                'HomeView',
+                'VideoPlayerView'
+            ];
+
+            const checkScripts = () => {
+                const loaded = requiredClasses.map(className => {
+                    const exists = typeof window[className] !== 'undefined';
+                    console.log(`📦 ${className}: ${exists ? '✅' : '❌'}`);
+                    return exists;
+                });
+
+                const allLoaded = loaded.every(Boolean);
+                console.log(`📊 Scripts loaded: ${loaded.filter(Boolean).length}/${requiredClasses.length}`);
+
+                if (allLoaded) {
+                    console.log('✅ All scripts loaded! Initializing app...');
+                    try {
+                        const app = new GreaterLoveApp();
+                        window.app = app; // Make globally accessible for debugging
+                        app.init();
+                    } catch (error) {
+                        console.error('❌ Failed to initialize app:', error);
+                        showFallbackInterface();
+                    }
+                } else {
+                    console.log('⏳ Some scripts still loading, retrying...');
+                    return false;
+                }
+                return true;
+            };
+
+            // Try immediately
+            if (!checkScripts()) {
+                // Then try every 500ms for up to 10 seconds
+                let attempts = 0;
+                const maxAttempts = 20;
+
+                const interval = setInterval(() => {
+                    attempts++;
+                    console.log(`🔄 Attempt ${attempts}/${maxAttempts}`);
+
+                    if (checkScripts() || attempts >= maxAttempts) {
+                        clearInterval(interval);
+                        if (attempts >= maxAttempts) {
+                            console.error('❌ Script loading timeout! Showing fallback interface.');
+                            showFallbackInterface();
+                        }
+                    }
+                }, 500);
+            }
+        }
+
+        function showFallbackInterface() {
+            console.log('🆘 Showing fallback interface');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('hidden');
+            }
+
+            const homeView = document.getElementById('homeView');
+            if (homeView) {
+                homeView.classList.add('active');
+
+                // Add basic key navigation as emergency fallback
+                document.addEventListener('keydown', (e) => {
+                    console.log('🔑 Emergency key handler:', e.keyCode);
+                    if (e.keyCode === 10009 || e.keyCode === 8) { // Back key
+                        console.log('🔙 Back key pressed - attempting app exit');
+                        if (typeof tizen !== 'undefined') {
+                            try {
+                                tizen.application.getCurrentApplication().exit();
+                            } catch (error) {
+                                console.error('Failed to exit app:', error);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', waitForScriptsAndInit);
+        } else {
+            waitForScriptsAndInit();
+        }
+        
+        // Emergency fallback - hide loading after 5 seconds no matter what
+        setTimeout(() => {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay && !loadingOverlay.classList.contains('hidden')) {
+                console.log('Emergency fallback: hiding loading overlay');
+                loadingOverlay.classList.add('hidden');
+                
+                // Show basic interface
+                const homeView = document.getElementById('homeView');
+                if (homeView) {
+                    homeView.classList.add('active');
+                }
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

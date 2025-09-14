@@ -6,8 +6,8 @@
     <tizen:application id="i2GNpZ28BV.GreaterLoveTV" package="i2GNpZ28BV" required_version="6.0"/>
     
     <!-- App Metadata -->
-    <name>Greater Love TV</name>
-    <description xml:lang="en">Greater Love Network - Inspirational Biblical content and live streaming</description>
+    <name>Greater Love TV App</name>
+    <description xml:lang="en">Greater Love Network - Stream inspiring biblical content, live sermons, worship music, and spiritual teachings. Connect with faith-based community content anytime.</description>
     <author href="https://greaterlove.tv" email="contact@greaterlove.tv">Greater Love Network</author>
     
     <!-- Main Content -->
@@ -19,7 +19,7 @@
     <!-- Content Security Policy for media streaming -->
     <tizen:content-security-policy>
         default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:;
-        media-src 'self' https: data: blob: https://rpn.bozztv.com https://swf.tulix.tv https://*.castr.com;
+        media-src 'self' https: data: blob: https://rpn.bozztv.com https://swf.tulix.tv https://*.castr.com https://test-streams.mux.dev;
         connect-src 'self' https: wss: ws:;
         script-src 'self' 'unsafe-inline' 'unsafe-eval';
         style-src 'self' 'unsafe-inline';
@@ -28,7 +28,7 @@
     </tizen:content-security-policy>
     
     <!-- Icons and Visual Assets -->
-    <icon src="images/icon.png"/>
+    <icon src="images/logo.png"/>
     
     <!-- TV Specific Settings -->
     <tizen:profile name="tv-samsung"/>

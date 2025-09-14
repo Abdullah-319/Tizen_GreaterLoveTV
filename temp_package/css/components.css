@@ -1,0 +1,1257 @@
+/* Greater Love TV - Component Styles */
+
+/* Section Titles */
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 60px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo .logo {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.nav-indicator {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.nav-button.active .nav-indicator {
+    opacity: 1;
+}
+
+/* Professional Video Cards (matching iOS design) */
+.video-data-card,
+.video-card {
+    background: rgba(28, 28, 30, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Professional Video Card Structure */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.video-thumbnail,
+.stream-thumbnail,
+.circle-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.video-thumbnail.loading {
+    filter: blur(2px);
+    opacity: 0.7;
+}
+
+.video-thumbnail.loaded {
+    filter: none;
+    opacity: 1;
+}
+
+.video-info,
+.stream-info,
+.circle-info {
+    padding: 16px;
+}
+
+.video-title,
+.stream-title,
+.circle-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-card:hover,
+.video-card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+/* Professional Card Overlays and Interactive Elements */
+.video-overlay,
+.stream-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.video-data-card:hover .video-overlay,
+.video-data-card:focus .video-overlay,
+.live-stream-card:hover .stream-overlay,
+.live-stream-card:focus .stream-overlay {
+    opacity: 1;
+}
+
+/* Professional Play Buttons */
+.play-button,
+.stream-play-button,
+.circle-play-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #000;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:hover,
+.stream-play-button:hover,
+.circle-play-button:hover {
+    transform: scale(1.1);
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Resume Button for Continue Watching */
+.resume-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 122, 255, 0.9);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+}
+
+.resume-text {
+    font-size: 0.9rem;
+}
+
+/* Category Cards */
+.category-card {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.category-card:hover,
+.category-card:focus {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.category-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.category-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.category-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.category-count {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+}
+
+.category-card:hover .category-overlay,
+.category-card:focus .category-overlay {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Show Circle Cards */
+.show-circle-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.show-circle-card:hover,
+.show-circle-card:focus {
+    transform: scale(1.1);
+}
+
+.circle-thumbnail-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.circle-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.circle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.show-circle-card:hover .circle-overlay,
+.show-circle-card:focus .circle-overlay {
+    opacity: 1;
+}
+
+.circle-play-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+}
+
+.circle-info {
+    text-align: center;
+}
+
+.circle-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.circle-episodes {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Live Stream Cards */
+.live-stream-card {
+    background: rgba(28, 28, 30, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    width: 320px;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.live-stream-card:hover,
+.live-stream-card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 59, 48, 0.4);
+}
+
+.live-stream-card.live-online {
+    border: 2px solid rgba(255, 59, 48, 0.6);
+}
+
+.live-indicator {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 3;
+}
+
+.live-indicator.online {
+    color: #ff3b30;
+}
+
+.live-indicator.offline {
+    color: #8e8e93;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.live-indicator.online .live-dot {
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+.channel-number {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Continue Watching Cards */
+.continue-watching-card {
+    position: relative;
+}
+
+.progress-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: white;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin-right: 12px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #007AFF;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.resume-time {
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.watch-progress-text {
+    font-size: 0.8rem;
+    color: #007AFF;
+    font-weight: 600;
+}
+
+/* Professional Animations */
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* Circular Progress for Show Cards */
+.circular-progress {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+}
+
+.circular-chart {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke: #007AFF;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+    0% { stroke-dasharray: 0 100; }
+}
+
+/* Professional Focus States */
+.video-data-card.focused,
+.category-card.focused,
+.show-circle-card.focused,
+.live-stream-card.focused,
+.continue-watching-card.focused {
+    outline: 3px solid #007AFF;
+    outline-offset: 4px;
+}
+
+.video-card:hover .video-overlay,
+.video-card:focus .video-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #000;
+    transition: all 0.2s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.episode-count {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-fill {
+    height: 100%;
+    background: #007AFF;
+    transition: width 0.3s ease;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 170px;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-thumbnail .placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.video-thumbnail .play-icon {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+}
+
+.video-thumbnail .duration {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.video-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.video-progress-fill {
+    height: 100%;
+    background: #f97316;
+    transition: width 0.3s ease;
+}
+
+.video-play-overlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.video-info {
+    padding: 15px;
+}
+
+.video-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-metadata {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.video-metadata .separator {
+    color: var(--text-muted);
+}
+
+.progress-indicator {
+    color: #f97316;
+    font-weight: 600;
+}
+
+/* Continue Watching Card */
+.continue-watching-card {
+    position: relative;
+}
+
+.continue-watching-card .video-thumbnail::after {
+    content: 'Continue';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #f97316;
+    color: var(--text-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Live Stream Cards */
+.live-stream-card {
+    background: rgba(28, 28, 30, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    width: 440px;
+    max-width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.live-thumbnail {
+    width: 100%;
+    height: 248px;
+    position: relative;
+    overflow: hidden;
+}
+
+.live-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.live-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.live-network-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.live-channel-number {
+    font-family: 'Poppins', sans-serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+.live-status {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 12px;
+    border-radius: 12px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.offline {
+    background: #6b7280;
+    animation: none;
+}
+
+.status-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.live-play-button {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: #ef4444;
+    color: var(--text-primary);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.live-play-button:hover {
+    transform: scale(1.1);
+}
+
+.live-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.live-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.live-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+/* Show Cards */
+.show-card {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    width: 340px;
+    height: 280px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.show-card:hover,
+.show-card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.show-background {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.show-category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+}
+
+.show-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.show-icon {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+}
+
+.show-episode-count {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.show-episode-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.show-details {
+    padding: 20px;
+}
+
+.show-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.show-metadata {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Category Cards */
+.category-card {
+    background: rgba(28, 28, 30, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    width: 300px;
+    height: 180px;
+    max-width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+}
+
+.category-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.category-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.category-icon {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.category-name {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.category-count {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-primary);
+    padding: 6px 16px;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Loading Cards */
+.loading-card {
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    animation: shimmer 1.5s infinite ease-in-out;
+}
+
+.loading-card.video {
+    width: 300px;
+    height: 240px;
+}
+
+.loading-card.show {
+    width: 340px;
+    height: 280px;
+}
+
+.loading-card.live {
+    width: 440px;
+    height: 320px;
+}
+
+.loading-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.3));
+}
+
+.loading-spinner-small {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--text-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+.loading-title {
+    width: 140px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.loading-subtitle {
+    width: 100px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-icon {
+    font-size: 1.5rem;
+}
+
+.section-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.section-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.section-action {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Category Show Sections */
+.category-shows-section {
+    margin-bottom: 60px;
+}
+
+.category-shows-section .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.category-shows-section .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.category-shows-section .section-count {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.shows-horizontal-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 20px 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.shows-horizontal-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.shows-horizontal-grid .video-card {
+    flex-shrink: 0;
+    width: 280px;
+}
+
+/* Horizontal Scrollers */
+.horizontal-scroller {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.horizontal-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.scroller-content {
+    display: flex;
+    gap: 30px;
+    padding: 0 40px;
+    min-width: min-content;
+}
+
+/* Grid Layouts */
+.grid-container {
+    display: grid;
+    gap: 40px;
+    padding: 0 60px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* QR Code Cards */
+.qr-code-card {
+    background: var(--text-primary);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+.qr-code-image {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 20px;
+    background: #000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.qr-code-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-bg);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1366px) {
+    .nav-content {
+        padding: 0 40px;
+    }
+    
+    .nav-items {
+        gap: 60px;
+    }
+    
+    .video-card {
+        width: 260px;
+    }
+    
+    .video-thumbnail {
+        height: 146px;
+    }
+    
+    .show-card {
+        width: 300px;
+        height: 240px;
+    }
+    
+    .live-stream-card {
+        width: 380px;
+    }
+    
+    .live-thumbnail {
+        height: 214px;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .nav-content {
+        padding: 0 80px;
+    }
+    
+    .nav-items {
+        gap: 100px;
+    }
+    
+    .video-card {
+        width: 360px;
+    }
+    
+    .video-thumbnail {
+        height: 203px;
+    }
+    
+    .show-card {
+        width: 400px;
+        height: 320px;
+    }
+    
+    .live-stream-card {
+        width: 520px;
+    }
+    
+    .live-thumbnail {
+        height: 292px;
+    }
+}

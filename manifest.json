@@ -1,0 +1,25 @@
+{
+    "name": "Greater Love TV",
+    "short_name": "GreaterLoveTV",
+    "description": "Stream your favorite Bible teachers in one place",
+    "version": "2.0.1",
+    "icons": [
+        {
+            "src": "images/icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "theme_color": "#007AFF",
+    "background_color": "#000000",
+    "categories": ["entertainment", "lifestyle"],
+    "lang": "en-US"
+}
